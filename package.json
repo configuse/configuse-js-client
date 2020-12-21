@@ -1,5 +1,5 @@
 {
-  "name": "configuse-js-client",
+  "name": "@configuse/configuse-js-client",
   "version": "0.0.4-alpha-test",
   "description": "configuse js client",
   "main": "dist/index.js",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/uuid": "^3.3.2",
     "axios": "^0.21.0",
+    "node-fetch": "^2.6.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

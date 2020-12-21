@@ -1,5 +1,6 @@
 import {Config} from "../index";
 import uuid from "uuid";
+const fetch = require("node-fetch");
 
 const configUseUrl: string = "https://vena-admin.herokuapp.com/configurations/v1";
 
@@ -28,7 +29,7 @@ export async function loadFromService(key: string): Promise<any> {
     };
 
     fetch(url, options)
-        .then(response => {
+        .then((response: { json: () => any; }) => {
             return response.json()
         });
 }
