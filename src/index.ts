@@ -1,4 +1,4 @@
-import {IConfiguration, IRawConfig, loadFromService} from './services/configUseClient';
+import {IRawConfig, loadFromService} from './services/configUseClient';
 
 export interface IInitializeParameters {
     RefreshIntervalTime: number;
@@ -41,7 +41,7 @@ export class Config {
 }
 
 export class Configuration {
-    public static config: IConfiguration[] | any = [];
+    public static config: { [key: string]: Config } = {}
     public static options: IInitializeParameters;
 
     static async startConfigurationApplication(
@@ -66,14 +66,18 @@ export class Configuration {
         projectKey: string,
     ): Promise<void> {
         let newConfigurations: IRawConfig[] = []
+        let preparsedConfigurations: any
+
         try {
             newConfigurations = await loadFromService(projectKey);
+            preparsedConfigurations = Configuration.mapToConfig(newConfigurations);
+
         } catch (err) {
-            // console.log("Err: ", err)
+            console.log("Err: ", err)
         } finally {
             Configuration.config = Object.assign(
                 Configuration.config,
-                newConfigurations
+                preparsedConfigurations
             );
         }
     }
@@ -95,5 +99,18 @@ export class Configuration {
                 ),
             options.RefreshIntervalTime
         );
+    }
+
+    /**
+     * Maps config keys to Config instances
+     */
+    private static mapToConfig(rawConfigList: IRawConfig[]) {
+        const ConfigList: { [key: string]: Config } = {}
+
+        for (let c in rawConfigList) {
+            ConfigList[rawConfigList[c].key] = new Config(rawConfigList[c].value)
+        }
+
+        return ConfigList
     }
 }

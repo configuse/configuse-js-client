@@ -15,8 +15,6 @@ export interface IRawConfig {
 }
 
 export async function loadFromService(key: string): Promise<any> {
-
-
     const url = `${configUseUrl}/${key}`;
     const options = {
         method: 'GET',
@@ -28,10 +26,7 @@ export async function loadFromService(key: string): Promise<any> {
         }
     };
 
-    fetch(url, options)
-        .then((response: { json: () => any; }) => response.json())
-        .then((data: any) => {
-            return data
-        })
+    let response = await fetch(url, options)
+    return  await response.json()
 }
 
