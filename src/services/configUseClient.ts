@@ -29,8 +29,9 @@ export async function loadFromService(key: string): Promise<any> {
     };
 
     fetch(url, options)
-        .then((response: { json: () => any; }) => {
-            return response.json()
-        });
+        .then((response: { json: () => any; }) => response.json())
+        .then((data: any) => {
+            return data
+        })
 }
 
