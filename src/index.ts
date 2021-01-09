@@ -49,6 +49,12 @@ export class Configuration {
     ) {
         Configuration.options = options;
 
+        if (Configuration.options.RefreshIntervalTimeInMs < 1000) {
+            Configuration.options.RefreshIntervalTimeInMs = 1000;
+            console.log("interval time configured as 1000 ms")
+            console.log("interval time least 1000ms")
+        }
+
         await Configuration.fill(
             options.ProjectKey,
         );
@@ -88,7 +94,14 @@ export class Configuration {
      * @returns {Config}
      */
     static get(key: string): Config {
-        return Configuration.config[key];
+        const config = Configuration.config[key]
+
+        if (config) {
+            console.log("requested configuration not found! - key:", key)
+            return new Config("default")
+        }
+
+        return config
     }
 
     private static fetchConfigurations(options: IInitializeParameters) {
