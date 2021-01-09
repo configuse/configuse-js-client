@@ -1,7 +1,7 @@
 import {IRawConfig, loadFromService} from './services/configUseClient';
 
 export interface IInitializeParameters {
-    RefreshIntervalTime: number;
+    RefreshIntervalTimeInMs: number;
     ProjectKey: string;
     FirstTimeLoadRetryCount: number;
 }
@@ -97,7 +97,7 @@ export class Configuration {
                 Configuration.fill(
                     options.ProjectKey
                 ),
-            options.RefreshIntervalTime
+            options.RefreshIntervalTimeInMs
         );
     }
 
