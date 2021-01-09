@@ -96,7 +96,7 @@ export class Configuration {
     static get(key: string): Config {
         const config = Configuration.config[key]
 
-        if (config) {
+        if (config == undefined) {
             console.log("requested configuration not found! - key:", key)
             return new Config("default")
         }

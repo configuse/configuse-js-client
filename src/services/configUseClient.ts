@@ -22,7 +22,7 @@ export async function loadFromService(key: string): Promise<any> {
             'Accept': 'application/json',
             'Content-Type': 'application/json;charset=UTF-8',
             "x-correlationId": uuid.v4(),
-            "x-agent-name": "configuse-js-client"
+            // "x-agent-name": "configuse-js-client"
         }
     };
 
