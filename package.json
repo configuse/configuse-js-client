@@ -1,6 +1,6 @@
 {
   "name": "@configuse/configuse-js-client",
-  "version": "0.0.10-alpha-test",
+  "version": "0.0.11-alpha-test",
   "description": "configuse js client",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
