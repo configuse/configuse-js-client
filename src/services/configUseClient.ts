@@ -2,7 +2,7 @@ import {Config} from "../index";
 import uuid from "uuid";
 const fetch = require("node-fetch");
 
-const configUseUrl: string = "https://configuse.tech/api/configurations/v1";
+const configUseUrl: string = "https://configuse.com/api/configurations/v1";
 
 export interface IConfiguration {
     config: Config;
